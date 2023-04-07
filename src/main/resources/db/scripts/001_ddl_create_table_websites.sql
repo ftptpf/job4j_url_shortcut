@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS websites (
     id SERIAL PRIMARY KEY NOT NULL ,
     site TEXT UNIQUE NOT NULL ,
-    login TEXT UNIQUE NOT NULL ,
+    login TEXT NOT NULL ,
     password TEXT NOT NULL
 );
 

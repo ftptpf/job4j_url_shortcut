@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS urls (
     id SERIAL PRIMARY KEY NOT NULL ,
     url TEXT UNIQUE NOT NULL ,
-    code TEXT UNIQUE NOT NULL ,
+    code TEXT NOT NULL ,
     counter TEXT NOT NULL
 );
 
