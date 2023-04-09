@@ -13,6 +13,10 @@ public class UrlService {
 
     private final UrlRepository urlRepository;
 
+    public Url save(Url url) {
+        return urlRepository.save(url);
+    }
+
     public List<Url> findAll() {
         return urlRepository.findAll();
     }

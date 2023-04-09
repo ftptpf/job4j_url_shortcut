@@ -20,5 +20,5 @@ public class Url {
     private int id;
     private String url;
     private String code;
-    private String counter;
+    private int counter;
 }

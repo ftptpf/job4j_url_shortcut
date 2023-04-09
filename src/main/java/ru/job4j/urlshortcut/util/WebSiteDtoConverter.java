@@ -9,7 +9,7 @@ public class WebSiteDtoConverter {
     private static final int STRING_SIZE = 7;
 
     /**
-     * Конвертируем WebSiteDto в WebSite перед сохранением в базе данных.
+     * Конвертируем WebSiteDto в WebSite перед первичным сохранением в базу данных.
      * При конвертации генерируем логин и пароль размером STRING_SIZE.
      * @param webSiteDto
      * @return WebSite
