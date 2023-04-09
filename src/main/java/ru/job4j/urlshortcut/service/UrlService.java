@@ -6,6 +6,7 @@ import ru.job4j.urlshortcut.model.Url;
 import ru.job4j.urlshortcut.repository.UrlRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class UrlService {
         return urlRepository.findAll();
     }
 
-    public Url findByCode(String code) {
+    public Optional<Url> findByCode(String code) {
         return urlRepository.findByCode(code);
     }
 }

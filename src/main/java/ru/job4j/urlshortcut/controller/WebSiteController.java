@@ -10,6 +10,7 @@ import ru.job4j.urlshortcut.model.WebSite;
 import ru.job4j.urlshortcut.service.WebSiteService;
 import ru.job4j.urlshortcut.util.WebSiteDtoConverter;
 
+import javax.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class WebSiteController {
     private final WebSiteService webSiteService;
 
     @PostMapping("/registration")
-    public ResponseEntity<?> create(@RequestBody WebSiteDto webSiteDto) {
+    public ResponseEntity<?> create(@Valid @RequestBody WebSiteDto webSiteDto) {
         WebSite webSite = new WebSiteDtoConverter().convertForSave(webSiteDto);
         WebSite webSiteFromDb = webSiteService.save(webSite);
         Map<String, String> body = new LinkedHashMap<>();
