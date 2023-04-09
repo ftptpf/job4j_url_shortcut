@@ -8,7 +8,6 @@ public class UrlShortcutApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(UrlShortcutApplication.class, args);
-        System.out.println("Go to Swagger RestFul API information page http://localhost:8080/swagger-ui.html");
     }
 
 }

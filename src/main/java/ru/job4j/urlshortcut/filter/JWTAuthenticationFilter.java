@@ -30,9 +30,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public static final String REGISTRATION_URL = "/api/v1/url/registration";
     public static final String REDIRECT_URL = "/api/v1/url/redirect";
     public static final String LOGIN_URL = "/login";
-    public static final String SWAGGER_START_URL = "/swagger-ui.html";
-    public static final String SWAGGER_DOC_URL = "/v3/api-docs/**";
-    public static final String SWAGGER_URL = "/swagger-ui/**";
 
     private AuthenticationManager auth;
 
