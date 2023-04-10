@@ -7,11 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.urlshortcut.dto.UrlDto;
+import ru.job4j.urlshortcut.dto.UrlStatisticDto;
 import ru.job4j.urlshortcut.model.Url;
 import ru.job4j.urlshortcut.service.UrlService;
 import ru.job4j.urlshortcut.util.UrlDtoConverter;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -41,6 +44,16 @@ public class UrlController {
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header("HTTP CODE - 302 REDIRECT", url.getUrl())
                 .build();
+    }
+
+    @GetMapping("/statistic")
+    public ResponseEntity<?> statistic() {
+        List<Url> list = urlService.findAll();
+        List<UrlStatisticDto> listDto = new ArrayList<>();
+        list.forEach(url -> listDto.add(new UrlStatisticDto(url.getUrl(), url.getCounter())));
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(listDto);
     }
 
 }

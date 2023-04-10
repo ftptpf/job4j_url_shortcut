@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UrlDto {
+public class UrlStatisticDto {
     private String url;
+    private int total;
 }
