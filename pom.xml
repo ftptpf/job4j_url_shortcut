@@ -50,14 +50,14 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>4.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -117,7 +117,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.20.0</version>
                 <configuration>
-                    <propertyFile>db/liquibase.properties</propertyFile>
+                    <propertyFile>src/main/resources/db/liquibase.properties</propertyFile>
                 </configuration>
             </plugin>
         </plugins>
