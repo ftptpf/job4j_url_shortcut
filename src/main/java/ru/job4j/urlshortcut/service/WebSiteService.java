@@ -31,4 +31,5 @@ public class WebSiteService implements UserDetailsService {
         }
         return new User(webSite.get().getLogin(), webSite.get().getPassword(), emptyList());
     }
+
 }

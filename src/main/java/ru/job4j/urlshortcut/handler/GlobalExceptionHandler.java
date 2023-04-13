@@ -18,12 +18,12 @@ import java.util.Map;
 public class GlobalExceptionHandler {
     private final ObjectMapper objectMapper;
 
-
     @ExceptionHandler(DataIntegrityViolationException.class)
     public void handleException(Exception e,
                                 HttpServletRequest request,
                                 HttpServletResponse response) throws IOException {
         Map<String, String> exceptionInformation = new HashMap<>();
+        exceptionInformation.put("registration", "false");
         exceptionInformation.put("message", "Object can't be save in database. It already exist them.");
         exceptionInformation.put("details", e.getMessage());
         response.setStatus(HttpStatus.BAD_REQUEST.value());

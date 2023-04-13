@@ -8,6 +8,7 @@ public class UrlShortcutApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(UrlShortcutApplication.class, args);
+        System.out.println("REST API service UrlShortCut ready for work!");
     }
 
 }
