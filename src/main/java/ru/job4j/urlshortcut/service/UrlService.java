@@ -26,4 +26,8 @@ public class UrlService {
         return urlRepository.findByCode(code);
     }
 
+    public void increaseCounterByOne(int id) {
+        urlRepository.increaseCounterByOne(id);
+    }
+
 }
