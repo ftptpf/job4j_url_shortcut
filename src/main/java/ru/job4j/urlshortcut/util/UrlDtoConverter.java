@@ -1,9 +1,11 @@
 package ru.job4j.urlshortcut.util;
 
+import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.RandomStringUtils;
 import ru.job4j.urlshortcut.dto.UrlDto;
 import ru.job4j.urlshortcut.model.Url;
 
+@UtilityClass
 public class UrlDtoConverter {
 
     private static final int STRING_SIZE = 7;
@@ -22,4 +24,5 @@ public class UrlDtoConverter {
         url.setCounter(0);
         return url;
     }
+
 }

@@ -1,9 +1,11 @@
 package ru.job4j.urlshortcut.util;
 
+import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.RandomStringUtils;
 import ru.job4j.urlshortcut.dto.WebSiteDto;
 import ru.job4j.urlshortcut.model.WebSite;
 
+@UtilityClass
 public class WebSiteDtoConverter {
 
     private static final int STRING_SIZE = 7;
@@ -21,4 +23,5 @@ public class WebSiteDtoConverter {
         webSite.setPassword(RandomStringUtils.randomAlphanumeric(STRING_SIZE));
         return webSite;
     }
+
 }

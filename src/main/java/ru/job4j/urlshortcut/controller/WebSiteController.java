@@ -23,7 +23,7 @@ public class WebSiteController {
 
     @PostMapping("/registration")
     public ResponseEntity<?> create(@Valid @RequestBody WebSiteDto webSiteDto) {
-        WebSite webSite = new WebSiteDtoConverter().convertForSave(webSiteDto);
+        WebSite webSite = WebSiteDtoConverter.convertForSave(webSiteDto);
         WebSite webSiteFromDb = webSiteService.save(webSite);
         Map<String, String> body = new LinkedHashMap<>();
         body.put("registration", "true");
