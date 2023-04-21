@@ -26,17 +26,38 @@ class WebSiteControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Sql(scripts = "/db/scripts/002_dml_delete_from_table_websites.sql",
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @Test
-    void webSiteRegistration() throws Exception {
-        WebSiteDto webSiteDto = new WebSiteDto("site5.ru");
+    public void whenWebSiteRegistration() throws Exception {
+        WebSiteDto webSiteDto = new WebSiteDto("test-site5.ru");
         this.mockMvc.perform(post("/api/v1/url/registration")
                         .content(objectMapper.writeValueAsString(webSiteDto))
-                        .contentType(MediaType.APPLICATION_JSON) )
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(unauthenticated())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.registration").value("true"));
-
     }
+
+    @Sql(scripts = "/db/scripts/001_dml_insert_table_websites.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "/db/scripts/002_dml_delete_from_table_websites.sql",
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Test
+    public void whenNotUniqueWebSiteRegistration() throws Exception {
+        WebSiteDto notUniqueWebSiteDto = new WebSiteDto("test-site1.ru");
+        this.mockMvc.perform(post("/api/v1/url/registration")
+                        .content(objectMapper.writeValueAsString(notUniqueWebSiteDto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(unauthenticated())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.registration").value("false"))
+                .andExpect(jsonPath("$.message")
+                        .value("Object can't be save in database. It already exist them."));
+    }
+
 }
