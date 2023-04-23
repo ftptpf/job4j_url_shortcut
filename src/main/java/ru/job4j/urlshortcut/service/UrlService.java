@@ -1,14 +1,13 @@
 package ru.job4j.urlshortcut.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.urlshortcut.model.Url;
 import ru.job4j.urlshortcut.repository.UrlRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,14 +24,8 @@ public class UrlService {
     }
 
     @Transactional
-    public Url findByCode(String code) {
-        Url url = urlRepository.findByCode(code)
-                .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                                "Redirect URL not found. Try other link.")
-                );
-        increaseCounterByOne(url.getId());
-        return url;
+    public Optional<Url> findByCode(String code) {
+        return urlRepository.findByCode(code);
     }
 
     @Transactional

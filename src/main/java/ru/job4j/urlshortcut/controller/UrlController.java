@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.urlshortcut.dto.UrlDto;
 import ru.job4j.urlshortcut.dto.UrlStatisticDto;
 import ru.job4j.urlshortcut.model.Url;
@@ -34,7 +35,11 @@ public class UrlController {
 
     @GetMapping("/redirect/{code}")
     public ResponseEntity<?> redirect(@PathVariable String code) {
-        Url url = urlService.findByCode(code);
+        Url url = urlService.findByCode(code).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Redirect URL not found. Try other link."
+        ));
+        urlService.increaseCounterByOne(url.getId());
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header("HTTP CODE - 302 REDIRECT", url.getUrl())
                 .build();
