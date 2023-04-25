@@ -39,7 +39,6 @@ public class UrlController {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Redirect URL not found. Try other link."
         ));
-        urlService.increaseCounterByOne(url.getId());
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header("HTTP CODE - 302 REDIRECT", url.getUrl())
                 .build();

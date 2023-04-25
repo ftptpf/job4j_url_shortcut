@@ -25,7 +25,9 @@ public class UrlService {
 
     @Transactional
     public Optional<Url> findByCode(String code) {
-        return urlRepository.findByCode(code);
+        Optional<Url> url = urlRepository.findByCode(code);
+        url.ifPresent(value -> increaseCounterByOne(value.getId()));
+        return url;
     }
 
     @Transactional
